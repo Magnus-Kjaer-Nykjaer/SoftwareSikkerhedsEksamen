@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebGoatCore.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using WebGoatCore.Models;
+using SQLitePCL;
 
 namespace WebGoatCore.Controllers
 {
@@ -87,23 +88,44 @@ namespace WebGoatCore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser(model.Username)
+                try
                 {
-                    Email = model.Email
-                };
+                    var userModel = new UserModel()
+                    {
+                        Username = new Username(model.Username), 
+                        Email = new Email(model.Email),
+                        CompanyName = new CompanyName(model.CompanyName),
+                        Password = new Password(model.Password),
+                        Address = new Address(model.Address),
+                        City = new City(model.City),
+                        Region = new Region(model.Region),
+                        PostalCode = new PostalCode(model.PostalCode),
+                        Country = new Country(model.Country)
+                    };
 
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _customerRepository.CreateCustomer(model.CompanyName, model.Username, model.Address, model.City, model.Region, model.PostalCode, model.Country);
+                    var user = new IdentityUser(userModel.Username.GetUsername())
+                    {
+                        Email = userModel.Email.GetEmail()
+                    };
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    var result = await _userManager.CreateAsync(user, userModel.Password.GetPassword());
+                    if (result.Succeeded)
+                    {
+                        _customerRepository.CreateCustomer(userModel.CompanyName.GetCompanyName(), userModel.Username.GetUsername(), 
+                        userModel.Address.GetAddress(), userModel.City.GetCity(), userModel.Region.GetRegion(), userModel.PostalCode.GetPostalCode(), userModel.Country.GetCountry());
+
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
-
-                foreach (var error in result.Errors)
+                catch
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    return BadRequest();
                 }
             }
 
