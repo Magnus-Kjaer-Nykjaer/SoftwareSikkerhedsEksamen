@@ -1,0 +1,6 @@
+projectKey=SoftwareSikkerhed-eksamen-WebGoat
+serverUrl=http://localhost:9000
+serverVersion=10.2.1.78527
+dashboardUrl=http://localhost:9000/dashboard?id=SoftwareSikkerhed-eksamen-WebGoat
+ceTaskId=AYvH-iv3DBg8EVtNVAq-
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYvH-iv3DBg8EVtNVAq-
