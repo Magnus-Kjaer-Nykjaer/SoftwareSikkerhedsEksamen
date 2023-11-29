@@ -126,7 +126,7 @@ namespace WebGoatCore
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-      if (env.IsDevelopment())
+      if (env.IsDevelopment()) // dette hjælper med en ordentlig fejlhåndtering og sørger for at vi ikke laver over exposure af data i fejlbeskeden
       {
         app.UseDeveloperExceptionPage();
       }
@@ -156,7 +156,7 @@ namespace WebGoatCore
     }
 
     public int startupNotUsed(int a, int b) // Function added to generate same FA Violation
-    {
+    { // Måske bloat code, kan ikke se hvor det bliver brugt
       var c = 1;
       b = 0;
       return a / b;
