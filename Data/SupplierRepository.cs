@@ -1,21 +1,21 @@
-﻿using WebGoatCore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using WebGoatCore.Models;
 
 namespace WebGoatCore.Data
 {
-    public class SupplierRepository
+  public class SupplierRepository
+  {
+    private readonly NorthwindContext _context;
+
+    public SupplierRepository(NorthwindContext context)
     {
-        private readonly NorthwindContext _context;
-
-        public SupplierRepository(NorthwindContext context)
-        {
-            _context = context;
-        }
-
-        public List<Supplier> GetAllSuppliers()
-        {
-            return _context.Suppliers.OrderBy(s => s.CompanyName).ToList();
-        }
+      _context = context;
     }
+
+    public List<Supplier> GetAllSuppliers()
+    {
+      return _context.Suppliers.OrderBy(s => s.CompanyName).ToList();
+    }
+  }
 }

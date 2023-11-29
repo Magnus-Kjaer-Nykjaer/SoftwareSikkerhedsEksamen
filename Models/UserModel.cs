@@ -1,23 +1,23 @@
 namespace WebGoatCore.Controllers
 {
-    public class UserModel
-    {
-        public required Username Username { get; set; }
-       
-        public required Email Email { get; set; }
-      
-        public required CompanyName CompanyName { get; set; }
-      
-        public required Password Password { get; set; }
+  public class UserModel
+  {
+    public required Username Username { get; set; }
 
-        public Address? Address { get; set; }
+    public required Email Email { get; set; }
 
-        public City? City { get; set; }
+    public required CompanyName CompanyName { get; set; }
 
-        public Region? Region { get; set; }
+    public required Password Password { get; set; }
 
-        public PostalCode? PostalCode { get; set; }
-        
-        public Country? Country { get; set; }
-    }
+    public Address? Address { get; set; }
+
+    public City? City { get; set; }
+
+    public Region? Region { get; set; }
+
+    public PostalCode? PostalCode { get; set; }
+
+    public Country? Country { get; set; }
+  }
 }

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Diagnostics;
 
 namespace WebGoatCore.ViewModels
 {
-    public class ErrorViewModel
-    {
-        public string RequestId { get; set; }
+  public class ErrorViewModel
+  {
+    public string RequestId { get; set; }
 
-        public IExceptionHandlerPathFeature ExceptionInfo { get; set; }
-    }
+    public IExceptionHandlerPathFeature ExceptionInfo { get; set; }
+  }
 }
