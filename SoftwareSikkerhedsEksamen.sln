@@ -1,25 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGoat.NET", "WebGoat.NET.csproj", "{43CB3F31-0D39-4A0D-8F9D-99674558A45C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGoat.NET", "WebGoatProject\WebGoat.NET.csproj", "{FB4BE6A7-ACDA-4340-AF52-B156ABE31DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareSikkerhedsEksamen.Tests", "SoftwareSikkerhedsEksamen.Tests\SoftwareSikkerhedsEksamen.Tests.csproj", "{04EC9AC7-F5A7-4DFD-B809-7F0D9A6D3780}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43CB3F31-0D39-4A0D-8F9D-99674558A45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43CB3F31-0D39-4A0D-8F9D-99674558A45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43CB3F31-0D39-4A0D-8F9D-99674558A45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43CB3F31-0D39-4A0D-8F9D-99674558A45C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B70CA887-88A9-440D-8FB2-0ACAC54B0D23}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB4BE6A7-ACDA-4340-AF52-B156ABE31DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB4BE6A7-ACDA-4340-AF52-B156ABE31DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB4BE6A7-ACDA-4340-AF52-B156ABE31DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB4BE6A7-ACDA-4340-AF52-B156ABE31DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04EC9AC7-F5A7-4DFD-B809-7F0D9A6D3780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04EC9AC7-F5A7-4DFD-B809-7F0D9A6D3780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04EC9AC7-F5A7-4DFD-B809-7F0D9A6D3780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04EC9AC7-F5A7-4DFD-B809-7F0D9A6D3780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

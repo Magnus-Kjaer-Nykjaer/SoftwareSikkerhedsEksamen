@@ -22,15 +22,15 @@ namespace WebGoatCore.Controllers
     private void IsUsernameValid(string username)
     {
       if (string.IsNullOrWhiteSpace(username)) //Tjekker for om username er null eller tomt
-        throw new ValidationException("Username is not valid");
+        throw new ValidationException("Username can not be null");
 
       if (!LengthCheck(username)) //Tjekker for om min og max længde er indenfor 2 og 20 karaktere
-        throw new ValidationException("Username is not valid");
+        throw new ValidationException("Username is not within lenght parameters");
 
       var isLettersOrNumbers = username.All(c => Char.IsLetter(c) || Char.IsNumber(c)); //Tjekker for om username kun består af bogstaver og tal
       if (!isLettersOrNumbers)
       {
-        throw new ValidationException("Username is not valid");
+        throw new ValidationException("Username can only be letters and numbers");
       }
     }
 
