@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using WebGoatCore.Data;
 using WebGoatCore.Models;
 using WebGoatCore.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebGoatCore.Controllers
 {
@@ -89,7 +91,7 @@ namespace WebGoatCore.Controllers
       {
         try
         {
-          var userModel = new UserModel()
+          var registerCustomerModel = new RegisterCustomer()
           {
             Username = new Username(model.Username),
             Email = new Email(model.Email),
@@ -102,16 +104,15 @@ namespace WebGoatCore.Controllers
             Country = new Country(model.Country)
           };
 
-          var user = new IdentityUser(userModel.Username.GetUsername())
+          var user = new IdentityUser(registerCustomerModel.Username.GetUsername())
           {
-            Email = userModel.Email.GetEmail()
+            Email = registerCustomerModel.Email.GetEmail()
           };
 
-          var result = await _userManager.CreateAsync(user, userModel.Password.GetPassword());
+          var result = await _userManager.CreateAsync(user, registerCustomerModel.Password.GetPassword());
           if (result.Succeeded)
           {
-            _customerRepository.CreateCustomer(userModel.CompanyName.GetCompanyName(), userModel.Username.GetUsername(),
-            userModel.Address.GetAddress(), userModel.City.GetCity(), userModel.Region.GetRegion(), userModel.PostalCode.GetPostalCode(), userModel.Country.GetCountry());
+            _customerRepository.CreateCustomer(registerCustomerModel);
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             return RedirectToAction("Index", "Home");
@@ -121,6 +122,10 @@ namespace WebGoatCore.Controllers
           {
             ModelState.AddModelError(string.Empty, error.Description);
           }
+        }
+        catch(ValidationException Exception)
+        {
+          ModelState.AddModelError(string.Empty, Exception.Message);
         }
         catch
         {

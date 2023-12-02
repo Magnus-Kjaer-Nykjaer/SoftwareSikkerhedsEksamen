@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using WebGoatCore.Controllers;
 using WebGoatCore.Models;
 
 namespace WebGoatCore.Data
@@ -30,20 +31,22 @@ namespace WebGoatCore.Data
     }
 
     //TODO: Add try/catch logic
-    public string CreateCustomer(string companyName, string contactName, string? address, string? city, string? region, string? postalCode, string? country)
+    public string CreateCustomer(RegisterCustomer registerCustomer)
     {
-      var customerId = GenerateCustomerId(companyName);
+      var customerId = GenerateCustomerId(registerCustomer.CompanyName.GetCompanyName());
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
       var customer = new Customer()
       {
-        CompanyName = companyName,
+        CompanyName = registerCustomer.CompanyName.GetCompanyName(),
         CustomerId = customerId,
-        ContactName = contactName,
-        Address = address,
-        City = city,
-        Region = region,
-        PostalCode = postalCode,
-        Country = country
+        ContactName = registerCustomer.Username.GetUsername(),
+        Address = registerCustomer.Address.GetAddress(),
+        City = registerCustomer.City.GetCity(),
+        Region = registerCustomer.Region.GetRegion(),
+        PostalCode = registerCustomer.PostalCode.GetPostalCode(),
+        Country = registerCustomer.Country.GetCountry()
       };
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
       _context.Customers.Add(customer);
       _context.SaveChanges();
       return customerId;

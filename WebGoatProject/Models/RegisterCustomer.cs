@@ -1,6 +1,6 @@
 namespace WebGoatCore.Controllers
 {
-  public class UserModel
+  public class RegisterCustomer
   {
     public required Username Username { get; set; }
 
