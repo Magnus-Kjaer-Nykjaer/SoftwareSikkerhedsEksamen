@@ -30,26 +30,32 @@ namespace WebGoatCore.Data
       _context.SaveChanges();
     }
 
-    //TODO: Add try/catch logic
     public string CreateCustomer(RegisterCustomer registerCustomer)
     {
-      var customerId = GenerateCustomerId(registerCustomer.CompanyName.GetCompanyName());
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-      var customer = new Customer()
+      try
       {
-        CompanyName = registerCustomer.CompanyName.GetCompanyName(),
-        CustomerId = customerId,
-        ContactName = registerCustomer.Username.GetUsername(),
-        Address = registerCustomer.Address.GetAddress(),
-        City = registerCustomer.City.GetCity(),
-        Region = registerCustomer.Region.GetRegion(),
-        PostalCode = registerCustomer.PostalCode.GetPostalCode(),
-        Country = registerCustomer.Country.GetCountry()
-      };
+        var customerId = GenerateCustomerId(registerCustomer.CompanyName.GetCompanyName());
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        var customer = new Customer()
+        {
+          CompanyName = registerCustomer.CompanyName.GetCompanyName(),
+          CustomerId = customerId,
+          ContactName = registerCustomer.Username.GetUsername(),
+          Address = registerCustomer.Address.GetAddress(),
+          City = registerCustomer.City.GetCity(),
+          Region = registerCustomer.Region.GetRegion(),
+          PostalCode = registerCustomer.PostalCode.GetPostalCode(),
+          Country = registerCustomer.Country.GetCountry()
+        };
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-      _context.Customers.Add(customer);
-      _context.SaveChanges();
-      return customerId;
+        _context.Customers.Add(customer);
+        _context.SaveChanges();
+        return customerId;
+      }
+      catch
+      {
+        throw;
+      }
     }
 
     public bool CustomerIdExists(string customerId)

@@ -12,7 +12,7 @@ namespace WebGoatCore.Controllers
       this.password = password;
     }
 
-    public string GetPassword()
+    public string GetPassword() //Bruge dette metode kald til at få retuneret værdien
     {
       return password;
     }
@@ -42,7 +42,7 @@ namespace WebGoatCore.Controllers
         throw new ValidationException("Password does not contain a special character");
     }
 
-    private bool LengthCheck(string input)
+    private bool LengthCheck(string input) //Bruges til at tjekke om passwordet er inden for længde specifikationerne
     {
       if (input.Length <= 64 && input.Length >= 12)
       {
