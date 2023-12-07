@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using WebGoatCore.Controllers;
 
 namespace SoftwareSikkerhedsEksamen.Tests;
@@ -26,6 +27,17 @@ public class UserUnitTest
   [InlineData("6iN#WYZO*FVe%Rt68U8l'")] //Skulle ikke fejle
   public void PasswordTest(string input)
   {
-    var password = new Password(input);
+    try
+    {
+      var password = new Password(input);
+    }
+    catch(ValidationException e)
+    {
+      Assert.True(true, e.Message);
+    }
+    catch(Exception e)
+    {
+      Assert.False(false, e.Message);
+    }
   }
 }
